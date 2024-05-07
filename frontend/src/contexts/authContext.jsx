@@ -14,6 +14,7 @@ const AuthProvider = ({ children }) => {
         if (data) {
             setAuth({ user: data?.user, token: data?.token });
         }
+        
     }, []);
     return (
         <AuthContext.Provider value={[auth, setAuth]}>

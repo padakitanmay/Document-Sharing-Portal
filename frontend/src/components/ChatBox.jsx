@@ -8,16 +8,16 @@ import { useState } from "react";
 const ChatBox = ({ data }) => {
     const [docs, setDocs] = useState([]);
     const [auth] = useAuth();
+    console.log(auth);
     useEffect(() => {
         const fetchData = async () => {
-            if (data && auth) {
+            if (data && auth!=null) {
                 const datas = await getDocs(auth.user._id, data?._id);
                 setDocs(datas);
             }
         };
         fetchData();
-    }, []);
-    console.log(docs);
+    }, [auth]);
     return (
         <div className='flex flex-col h-screen'>
             <div className='text-center font-bold p-5 bg-blue-200 rounded-lg'>
