@@ -15,12 +15,10 @@ const FileSchema = new mongoose.Schema({
         default: 0,
     },
     sentBy:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "user"
+        type: String,
     },
     receivedBy:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "user"
+        type: String,
     }
 });
 

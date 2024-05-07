@@ -17,7 +17,6 @@ const ChatBox = ({ data }) => {
         };
         fetchData();
     }, []);
-
     console.log(docs);
     return (
         <div className='flex flex-col h-screen'>
@@ -30,9 +29,9 @@ const ChatBox = ({ data }) => {
                 {data?.username}
             </div>
             <div className='h-auto'>
-                {docs?.length > 0 &&
-                    docs?.map((item) => {
-                        return <div key={item._id}>Sent By{item.path}</div>;
+                {docs.files?.length > 0 &&
+                    docs.files?.map((item) => {
+                        return <div key={item._id}>Sent By{item.sentBy}</div>;
                     })}
             </div>
             <div className=' p-3 flex justify-center bg-blue-200 rounded-lg'>

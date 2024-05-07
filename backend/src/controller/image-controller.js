@@ -42,7 +42,6 @@ export const getImage = async (req, res) => {
 export const getDocs = async (req, res) => {
     try {
         const { senderId, recieverId } = req.query;
-        console.log(req.query);
         const sData = await User.findById(senderId);
         const rData = await User.findById(recieverId);
         const sender = {
@@ -55,7 +54,7 @@ export const getDocs = async (req, res) => {
         };
 
         const files = await File.find({
-            $or: [{ sentBy: senderId, receivedBy: recieverId }, { sentBy: recieverId, receivedBy: senderId }],
+            $or: [{ sentBy: sData.username, receivedBy: rData.username }, { sentBy: rData.username, receivedBy: sData.username }],
         });
         res.status(200).json({ sender, reciever, files });
     } catch (error) {
