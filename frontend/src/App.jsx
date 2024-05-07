@@ -1,13 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
-import { uploadFile } from "./service/api";
-import Chats from "./components/Pages/Chats";
-import Upload from "./components/Upload";
+import React from "react";
+import Chats from "./components/Chats";
 
 const App = () => {
     return (
         <div>
             <Chats />
-            <Upload/>
         </div>
     );
 };

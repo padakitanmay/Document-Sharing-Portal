@@ -12,7 +12,14 @@ const Login = () => {
             const userData = { email, password };
             const res = await loginUser(userData);
             console.log("Login response:", res);
-            if (res.status == 200) navigate("/");
+            if (res.status == 200) {
+                localStorage.setItem(
+                    "auth",
+                    JSON.stringify({ user: res.user, token: res.token })
+                );
+
+                navigate("/");
+            }
             // Handle successful login (e.g., redirect to dashboard)
         } catch (error) {
             setError("Invalid email or password");

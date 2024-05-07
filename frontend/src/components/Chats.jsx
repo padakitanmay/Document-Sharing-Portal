@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
 import { Avatar, List } from "antd";
-import { getChats } from "../../service/api";
+import { getChats } from "../service/api";
 import { useState } from "react";
+import ChatBox from "./ChatBox";
 
 const Chats = () => {
     const [chatData, setChatData] = useState();
+    const [comData, setComData] = useState(null);
     const fetchData = async () => {
         const data = await getChats();
-        if (data) {
-            setChatData(data);
-        }
-        console.log(data);
+        if (data) setChatData(data);
     };
     useEffect(() => {
         fetchData();
@@ -30,16 +29,16 @@ const Chats = () => {
                                     />
                                 }
                                 title={
-                                    <a href='https://ant.design'>
+                                    <span onClick={() => setComData(item)}>
                                         {item.username}
-                                    </a>
+                                    </span>
                                 }
                             />
                         </List.Item>
                     )}
                 />
             </div>
-            <div className='p-10'>Detials</div>
+            <div className='p-10'>{comData && <ChatBox data={comData} />}</div>
         </div>
     );
 };
