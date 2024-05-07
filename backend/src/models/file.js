@@ -14,8 +14,14 @@ const FileSchema = new mongoose.Schema({
         required: true,
         default: 0,
     },
+    sentBy:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user"
+    },
+    receivedBy:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user"
+    }
 });
 
-const File = mongoose.model("file", FileSchema);
-
-export default File;
+export default File = mongoose.model("file", FileSchema);

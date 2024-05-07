@@ -1,14 +1,24 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { signupUser } from "../service/api";
 
 const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Add your signup logic here
-        console.log("Signing up...");
+        // signupUser(e);
+        try {
+            const userData = { email, password, username};
+            const res = await signupUser(userData);
+            console.log('Signup response:', res);
+            // Handle successful login (e.g., redirect to dashboard)
+        } catch (error) {
+            setError('Invalid email or password');
+            console.error('Signup error:', error);
+        }
     };
 
     return (
@@ -22,6 +32,16 @@ const Signup = () => {
                         id="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        className="border border-gray-300 rounded-md px-3 py-2 w-full"
+                    />
+                </div>
+                <div>
+                    <label htmlFor="username" className="text-lg">Username:</label>
+                    <input
+                        type="username"
+                        id="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                         className="border border-gray-300 rounded-md px-3 py-2 w-full"
                     />
                 </div>
