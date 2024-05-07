@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import "./App.css";
 import { uploadFile } from "./service/api";
 
-function App() {
+const App = () => {
     const [file, setFile] = useState("");
     const [result, setResult] = useState("");
 
@@ -50,6 +50,6 @@ function App() {
             </div>
         </div>
     );
-}
+};
 
 export default App;
