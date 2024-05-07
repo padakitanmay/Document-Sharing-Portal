@@ -11,7 +11,6 @@ const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState({ user: null, token: "" });
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem("auth"));
-        console.log(data)
         if (data) {
             setAuth({ user: data?.user, token: data?.token });
         }

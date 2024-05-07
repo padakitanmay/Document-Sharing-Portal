@@ -1,4 +1,5 @@
 import File from "../models/file.js";
+import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 
@@ -8,6 +9,8 @@ export const uploadImage = async (req, res) => {
     const fileObj = {
         path: req.file.path,
         name: req.file.originalname,
+        receivedBy: req.body.receivedBy,
+        sentBy: req.body.sentBy,
     };
 
     try {
@@ -30,6 +33,31 @@ export const getImage = async (req, res) => {
         await file.save();
 
         res.download(file.path, file.name);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json({ msg: error.message });
+    }
+};
+
+export const getDocs = async (req, res) => {
+    try {
+        const { senderId, recieverId } = req.query;
+        console.log(req.query);
+        const sData = await User.findById(senderId);
+        const rData = await User.findById(recieverId);
+        const sender = {
+            ...sData,
+            password: null,
+        };
+        const reciever = {
+            ...rData,
+            password: null,
+        };
+
+        const files = await File.find({
+            $or: [{ sentBy: senderId, receivedBy: recieverId }, { sentBy: recieverId, receivedBy: senderId }],
+        });
+        res.status(200).json({ sender, reciever, files });
     } catch (error) {
         console.error(error.message);
         res.status(500).json({ msg: error.message });

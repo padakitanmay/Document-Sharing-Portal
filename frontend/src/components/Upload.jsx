@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { uploadFile } from "../service/api";
+import { useAuth } from "../contexts/authContext";
 
-const Upload = ({ data }) => {
+const Upload = (props) => {
+    const [auth] = useAuth();
     const [file, setFile] = useState("");
     const [result, setResult] = useState("");
-
     const fileInputRef = useRef();
-
-    const url =
-        "https://i.pinimg.com/originals/16/46/24/1646243661201a0892cc4b1a64fcbacf.jpg";
 
     useEffect(() => {
         const getImage = async () => {
@@ -16,8 +14,9 @@ const Upload = ({ data }) => {
                 const data = new FormData();
                 data.append("name", file.name);
                 data.append("file", file);
+                data.append("receivedBy", props.data._id);
+                data.append("sentBy", auth.user._id);
                 const res = await uploadFile(data);
-                console.log(res);
                 setResult(res.path);
             }
         };
