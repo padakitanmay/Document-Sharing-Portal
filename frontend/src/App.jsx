@@ -1,5 +1,4 @@
-import { useState, useEffect, useRef } from "react";
-import "./App.css";
+import React, { useState, useEffect, useRef } from "react";
 import { uploadFile } from "./service/api";
 
 const App = () => {
@@ -30,22 +29,34 @@ const App = () => {
     };
 
     return (
-        <div className='container'>
-            <img src={url} className='img' alt='' />
-            <div className='wrapper'>
-                <h1>Simple file sharing!</h1>
-                <p>Upload and share the download link.</p>
-                <button onClick={() => onUploadClick()}>Upload</button>
+        <div className='container mx-auto py-4'>
+            {/* <img src={url} className='max-w-full mb-4' alt='' /> */}
+            <div className='bg-gray-100 p-4 rounded-lg shadow-md'>
+                <h1 className='text-2xl font-bold mb-2'>Simple file sharing!</h1>
+                <p className='text-lg mb-4'>Upload and share the download link.</p>
+                <button
+                    className='bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded'
+                    onClick={onUploadClick}
+                >
+                    Upload
+                </button>
                 <input
                     type='file'
                     ref={fileInputRef}
-                    style={{ display: "none" }}
+                    className='hidden'
                     onChange={(e) => setFile(e.target.files[0])}
                 />
-                {result && <img className='preview' src={result} alt='' />}
-                <a href={result} target='_blank' rel='noreferrer'>
-                    {result}
-                </a>
+                {result && <img className='max-w-full mt-4' src={result} alt='' />}
+                {result && (
+                    <a
+                        href={result}
+                        className='block mt-4 text-green-500 hover:text-green-700'
+                        target='_blank'
+                        rel='noreferrer'
+                    >
+                        {result}
+                    </a>
+                )}
             </div>
         </div>
     );
