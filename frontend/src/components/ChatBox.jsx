@@ -17,7 +17,7 @@ const ChatBox = ({ data }) => {
             }
         };
         fetchData();
-    }, [auth,docs,deleteFile]);
+    }, [auth, docs, deleteFile]);
 
     const remove = (fileId) => {
         deleteFile(fileId);
@@ -25,12 +25,8 @@ const ChatBox = ({ data }) => {
     return (
         <div className='flex flex-col h-screen'>
             <div className='text-center font-bold p-5 bg-blue-200 rounded-lg'>
-                <span>
-                    <Avatar
-                        src={`https://api.dicebear.com/7.x/miniavs/svg?seed=0`}
-                    />
-                </span>
-                {data?.username}
+                <div>Files</div>
+                <div>{data?.username}</div>
             </div>
             <div className='mt-4'>
                 {docs.files?.length > 0 && (
@@ -38,16 +34,16 @@ const ChatBox = ({ data }) => {
                         {docs.files.map((item) => (
                             <li key={item._id} className='py-4'>
                                 <p className='font-semibold'>
-                                    URL:{" "}
+                                    File:
                                     <a
                                         href={`${item.path}`}
-                                        className='block mt-4 text-green-500 hover:text-green-700'
+                                        className='block text-green-500 hover:text-green-700'
                                         target='_blank'
                                         rel='noreferrer'
                                     >
                                         {item.name}
                                     </a>
-                                    <button onClick={()=>remove(item._id)}>
+                                    <button onClick={() => remove(item._id)}>
                                         Delete
                                     </button>
                                 </p>

@@ -42,7 +42,7 @@ const Chats = () => {
                     }
                 />
             </div>
-            <div className='p-10'>{comData && <ChatBox data={comData} />}</div>
+            <div className='p-10'>{comData && <ChatBox data={comData}/>}</div>
         </div>
     );
 };

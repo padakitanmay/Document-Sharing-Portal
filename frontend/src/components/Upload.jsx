@@ -27,15 +27,6 @@ const Upload = (props) => {
     };
 
     return (
-        // // <div className='container mx-auto py-4'>
-        //     {/* <img src={url} className='max-w-full mb-4' alt='' /> */}
-        //     <div className='bg-gray-100 p-4 rounded-lg shadow-md'>
-        //         <h1 className='text-2xl font-bold mb-2'>
-        //             Simple file sharing!
-        //         </h1>
-        //         <p className='text-lg mb-4'>
-        //             Upload and share the download link.
-        //         </p>
         <>
             <button
                 className='bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded'
@@ -50,14 +41,6 @@ const Upload = (props) => {
                 onChange={(e) => setFile(e.target.files[0])}
             />
         </>
-        //         {result && (
-        //             <img className='max-w-full mt-4' src={result} alt='' />
-        //         )}
-        //         {result && (
-        //             
-        //         )}
-        //     </div>
-        // </div>
     );
 };
 

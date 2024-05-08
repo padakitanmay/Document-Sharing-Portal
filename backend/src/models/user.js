@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    username:{
+    username: {
         type: String,
         required: true,
     },
@@ -22,8 +22,8 @@ const userSchema = new mongoose.Schema({
     },
 });
 
-userSchema.methods.checkPassword = async function(pass){
-    return await bcrypt.compare(pass,this.password);
+userSchema.methods.checkPassword = async function (pass) {
+    return await bcrypt.compare(pass, this.password);
 };
 
 userSchema.methods.generateToken = function () {
@@ -33,7 +33,7 @@ userSchema.methods.generateToken = function () {
         },
         process.env.ACCESS_TOKEN_SECRET,
         {
-            expiresIn:"10d",
+            expiresIn: "10d",
         }
     );
 };

@@ -15,12 +15,17 @@ const Header = () => {
         <header className='bg-gray-800 text-white py-2'>
             <div className='container mx-auto flex justify-between items-center'>
                 <h1 className='text-lg font-bold'>
-                    <Link to='/'>Logo</Link>
+                    <Link to='/'>
+                        <div className="flex">
+                        <img src='docs.svg' alt='' className='size-10' />
+                        <h1 className="mx-2 align-middle">Document Sharing Portal</h1>
+                        </div>
+                    </Link>
                 </h1>
                 <nav>
                     <ul className='flex space-x-2'>
                         {!auth?.user ? (
-                            <div className="flex">
+                            <div className='flex'>
                                 <li>
                                     <Link to='/login'>
                                         <button className='bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded mx-1'>
@@ -43,7 +48,7 @@ const Header = () => {
                                 </h1>
                                 <li>
                                     <button
-                                        className='bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded'
+                                        className='bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded mx-1'
                                         onClick={logout}
                                     >
                                         Logout

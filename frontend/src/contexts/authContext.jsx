@@ -1,9 +1,4 @@
-import React, {
-    createContext,
-    useContext,
-    useEffect,
-    useState,
-} from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext();
 
@@ -14,7 +9,6 @@ const AuthProvider = ({ children }) => {
         if (data) {
             setAuth({ user: data?.user, token: data?.token });
         }
-        
     }, []);
     return (
         <AuthContext.Provider value={[auth, setAuth]}>

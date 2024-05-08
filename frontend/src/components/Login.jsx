@@ -20,7 +20,6 @@ const Login = () => {
 
                 navigate("/");
             }
-            // Handle successful login (e.g., redirect to dashboard)
         } catch (error) {
             setError("Invalid email or password");
             console.error("Login error:", error);

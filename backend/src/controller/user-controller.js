@@ -1,14 +1,14 @@
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
 
-// Controller function to handle user registration
 const registerUser = async (req, res) => {
     try {
         const { email, password } = req.body;
         const username = req.body.username.toString();
+
         const hashed = await bcrypt.hash(password, 10);
-        console.log(username);
-        // Check if user with the same email already exists
+
+
         const existingUser = await User.findOne({ email, username });
         if (existingUser) {
             return res
@@ -17,7 +17,6 @@ const registerUser = async (req, res) => {
         }
 
         const newUser = new User({ email, username, password: hashed });
-        console.log(newUser);
         await newUser.save();
 
         res.status(201).json({ message: "User registered successfully" });
@@ -27,18 +26,15 @@ const registerUser = async (req, res) => {
     }
 };
 
-// Controller function to handle user login
 const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        // Find the user by email
         const user = await User.findOne({ email });
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
 
-        // Check if the password matches
         const passwordMatch = await user.checkPassword(password);
         if (!passwordMatch) {
             return res.status(401).json({ message: "Invalid password" });
@@ -46,7 +42,6 @@ const loginUser = async (req, res) => {
 
         const token = await user.generateToken();
 
-        // Login successful
         res.status(200).json({
             message: "Login successful",
             user,
@@ -61,7 +56,7 @@ const loginUser = async (req, res) => {
         });
     }
 };
-const getChatsController = async (req, res) => {
+const getUsers = async (req, res) => {
     try {
         const users = await User.find({});
         res.status(200).json(users);
@@ -74,4 +69,4 @@ const getChatsController = async (req, res) => {
     }
 };
 
-export { registerUser, loginUser, getChatsController };
+export { registerUser, loginUser, getUsers };

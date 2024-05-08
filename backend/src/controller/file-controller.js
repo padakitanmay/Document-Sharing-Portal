@@ -1,6 +1,5 @@
 import File from "../models/file.js";
 import User from "../models/user.js";
-import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -29,20 +28,19 @@ export const deleteImage = async (req, res) => {
     const fileId = req.query.fileId; // Assuming you pass the file ID in the request URL
     try {
         const deletedFile = await File.findByIdAndDelete(fileId);
-        console.log(fileId,"Deleted file");
+        console.log(fileId, "Deleted file");
         if (!deletedFile) {
-            return res.status(404).json({ error: 'File not found' });
+            return res.status(404).json({ error: "File not found" });
         }
         // Optionally, you may also want to delete the file from the filesystem using fs.unlinkSync(deletedFile.path);
-        res.status(200).json({ message: 'File deleted successfully' });
+        res.status(200).json({ message: "File deleted successfully" });
     } catch (error) {
         console.error(error.message);
         res.status(500).json({ error: error.message });
     }
 };
 
-
-export const getImage = async (req, res) => {
+export const getFile = async (req, res) => {
     try {
         const file = await File.findById(req.params.fileId);
 
@@ -78,7 +76,9 @@ export const getDocs = async (req, res) => {
             ],
         });
         for (let i = 0; i < files.length; i++) {
-            files[i].path = `http://localhost:${process.env.PORT}/file/${files[i]._id}`
+            files[
+                i
+            ].path = `http://localhost:${process.env.PORT}/file/${files[i]._id}`;
         }
         res.status(200).json({ sender, reciever, files });
     } catch (error) {
