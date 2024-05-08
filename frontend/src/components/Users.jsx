@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Avatar, List } from "antd";
-import { getChats } from "../service/api";
+import { getUsers } from "../service/api";
 import { useState } from "react";
 import Documents from "./Documents";
 import { useAuth } from "../contexts/AuthContext";
@@ -11,7 +11,7 @@ const Users = () => {
     const [chatData, setChatData] = useState();
     const [comData, setComData] = useState(null);
     const fetchData = async () => {
-        const data = await getChats();
+        const data = await getUsers();
         if (data) setChatData(data);
     };
     useEffect(() => {

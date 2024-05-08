@@ -5,7 +5,6 @@ import { useEffect } from "react";
 
 const Header = () => {
     const currenturl = useLocation();
-    console.log(currenturl);
     const navigate = useNavigate();
     const [auth] = useAuth();
     useEffect(() => {}, [auth]);

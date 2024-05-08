@@ -4,14 +4,14 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export const uploadImage = async (req, res) => {
+// Controller to create a new file
+export const uploadFile = async (req, res) => {
     const fileObj = {
         path: req.file.path,
         name: req.file.originalname,
         receivedBy: req.body.receivedBy,
         sentBy: req.body.sentBy,
     };
-    // console.log(fileObj);
 
     try {
         const file = await File.create(fileObj);
@@ -24,11 +24,11 @@ export const uploadImage = async (req, res) => {
     }
 };
 
-export const deleteImage = async (req, res) => {
-    const fileId = req.query.fileId; // Assuming you pass the file ID in the request URL
+// Controller to delete a file
+export const deleteFile = async (req, res) => {
+    const fileId = req.query.fileId; 
     try {
         const deletedFile = await File.findByIdAndDelete(fileId);
-        console.log(fileId, "Deleted file");
         if (!deletedFile) {
             return res.status(404).json({ error: "File not found" });
         }
@@ -40,6 +40,7 @@ export const deleteImage = async (req, res) => {
     }
 };
 
+// Controller to download/get a file
 export const getFile = async (req, res) => {
     try {
         const file = await File.findById(req.params.fileId);
@@ -55,6 +56,8 @@ export const getFile = async (req, res) => {
     }
 };
 
+
+// Controller to get all files of a user
 export const getDocs = async (req, res) => {
     try {
         const { senderId, recieverId } = req.query;

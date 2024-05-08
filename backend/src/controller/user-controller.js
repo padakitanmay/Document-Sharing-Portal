@@ -1,6 +1,7 @@
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
 
+// Controller to create a new user
 const registerUser = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -26,6 +27,7 @@ const registerUser = async (req, res) => {
     }
 };
 
+// Controller to login a user
 const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -56,6 +58,8 @@ const loginUser = async (req, res) => {
         });
     }
 };
+
+// Controller to get all users
 const getUsers = async (req, res) => {
     try {
         const users = await User.find({});

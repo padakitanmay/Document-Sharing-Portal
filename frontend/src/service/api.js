@@ -2,6 +2,7 @@ import axios from "axios";
 
 const API_URI = "http://localhost:5000";
 
+// Uploads a file to the server
 export const uploadFile = async (data) => {
     try {
         const res = await axios.post(`${API_URI}/upload`, data);
@@ -11,6 +12,7 @@ export const uploadFile = async (data) => {
     }
 };
 
+// Deletes a file from the server
 export const deleteFile = async (fileId) => {
     try {
         const res = await axios.get(`${API_URI}/delete`, {
@@ -22,6 +24,7 @@ export const deleteFile = async (fileId) => {
     }
 };
 
+// function to login user
 export const loginUser = async (userData) => {
     try {
         const res = await axios.post(`${API_URI}/login`, userData);
@@ -31,6 +34,7 @@ export const loginUser = async (userData) => {
     }
 };
 
+// function to signup user
 export const signupUser = async (userData) => {
     try {
         const res = await axios.post(`${API_URI}/register`, userData);
@@ -40,15 +44,17 @@ export const signupUser = async (userData) => {
     }
 };
 
-export const getChats = async () => {
+// function to get the users
+export const getUsers = async () => {
     try {
-        const res = await axios.post(`${API_URI}/getChats`);
+        const res = await axios.post(`${API_URI}/getUsers`);
         return res.data;
     } catch (error) {
         console.log("Error while calling the chats API ", error.message);
     }
 };
 
+// function to get the documents
 export const getDocs = async (senderId, recieverId) => {
     try {
         const res = await axios.get(`${API_URI}/getDocs`, {

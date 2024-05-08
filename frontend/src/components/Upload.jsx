@@ -13,7 +13,6 @@ const Upload = (props) => {
                 const data = new FormData();
                 data.append("name", file.name);
                 data.append("file", file);
-                console.log(file);
                 data.append("receivedBy", props.data.username);
                 data.append("sentBy", auth.user.username);
                 const res = await uploadFile(data);

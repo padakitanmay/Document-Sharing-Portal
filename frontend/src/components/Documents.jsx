@@ -10,8 +10,8 @@ const Documents = ({ data }) => {
     useEffect(() => {
         const fetchData = async () => {
             if (data && auth != null) {
-                const datas = await getDocs(auth?.user._id, data?._id);
-                setDocs(datas);
+                const docs = await getDocs(auth?.user._id, data?._id);
+                setDocs(docs);
             }
         };
         fetchData();
