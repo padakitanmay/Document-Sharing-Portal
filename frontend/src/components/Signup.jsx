@@ -22,8 +22,8 @@ const Signup = () => {
     };
 
     return (
-        <div className='container mx-auto py-4'>
-            <h2 className='text-xl font-bold mb-4'>Sign up</h2>
+        <div className='container mx-auto py-4 p-96 h-screen'>
+            <h2 className='text-3xl font-bold mb-4 text-center'>Sign up</h2>
             <form onSubmit={handleSubmit} className='flex flex-col space-y-4'>
                 <div>
                     <label htmlFor='email' className='text-lg'>
@@ -42,7 +42,7 @@ const Signup = () => {
                         Username:
                     </label>
                     <input
-                        type='username'
+                        type='text'
                         id='username'
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
@@ -61,12 +61,14 @@ const Signup = () => {
                         className='border border-gray-300 rounded-md px-3 py-2 w-full'
                     />
                 </div>
-                <button
-                    type='submit'
-                    className='bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600'
-                >
-                    Sign up
-                </button>
+                <div className='flex justify-center'>
+                    <button
+                        type='submit'
+                        className='bg-green-500 text-white px-4 w-1/3 py-2 rounded-md hover:bg-green-600'
+                    >
+                        Sign up
+                    </button>
+                </div>
             </form>
             <p className='mt-4'>
                 Already have an account?{" "}

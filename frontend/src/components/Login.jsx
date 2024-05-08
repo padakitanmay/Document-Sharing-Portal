@@ -27,8 +27,8 @@ const Login = () => {
     };
 
     return (
-        <div className='container mx-auto py-4'>
-            <h2 className='text-xl font-bold mb-4'>Login</h2>
+        <div className='container py-4 p-96 h-screen'>
+            <h1 className='text-3xl font-bold mb-4 text-center'>Login</h1>
             <form onSubmit={handleSubmit} className='flex flex-col space-y-4'>
                 <div>
                     <label htmlFor='email' className='text-lg'>
@@ -54,12 +54,15 @@ const Login = () => {
                         className='border border-gray-300 rounded-md px-3 py-2 w-full'
                     />
                 </div>
+                <div className="flex justify-center">
+
                 <button
                     type='submit'
-                    className='bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 '
+                    className='bg-blue-500 text-white px-4 w-1/3 py-2 rounded-md hover:bg-blue-600 '
                 >
                     Login
                 </button>
+                </div>
             </form>
             <p className='mt-4'>
                 Don't have an account?{" "}

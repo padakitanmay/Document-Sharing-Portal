@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import Upload from "./Upload";
-import { Avatar } from "antd";
 import { useAuth } from "../contexts/authContext";
 import { getDocs, deleteFile } from "../service/api";
 import { useState } from "react";
@@ -12,7 +11,6 @@ const ChatBox = ({ data }) => {
         const fetchData = async () => {
             if (data && auth != null) {
                 const datas = await getDocs(auth?.user._id, data?._id);
-                // if (datas.sender._doc._id == auth.user._id && datas.receiver._doc._id == data._id)
                 setDocs(datas);
             }
         };
@@ -43,9 +41,13 @@ const ChatBox = ({ data }) => {
                                     >
                                         {item.name}
                                     </a>
-                                    <button onClick={() => remove(item._id)}>
-                                        Delete
-                                    </button>
+                                    {item.sentBy == auth.user.username && (
+                                        <button
+                                            onClick={() => remove(item._id)}
+                                        >
+                                            Delete
+                                        </button>
+                                    )}
                                 </p>
                                 <div>From: {item.sentBy}</div>
                             </li>
