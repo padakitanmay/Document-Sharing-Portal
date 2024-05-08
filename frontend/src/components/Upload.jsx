@@ -5,7 +5,6 @@ import { useAuth } from "../contexts/authContext";
 const Upload = (props) => {
     const [auth] = useAuth();
     const [file, setFile] = useState("");
-    const [result, setResult] = useState("");
     const fileInputRef = useRef();
 
     useEffect(() => {
@@ -14,10 +13,10 @@ const Upload = (props) => {
                 const data = new FormData();
                 data.append("name", file.name);
                 data.append("file", file);
+                console.log(file);
                 data.append("receivedBy", props.data.username);
                 data.append("sentBy", auth.user.username);
                 const res = await uploadFile(data);
-                setResult(res.path);
             }
         };
         getImage();
@@ -55,14 +54,7 @@ const Upload = (props) => {
         //             <img className='max-w-full mt-4' src={result} alt='' />
         //         )}
         //         {result && (
-        //             <a
-        //                 href={result}
-        //                 className='block mt-4 text-green-500 hover:text-green-700'
-        //                 target='_blank'
-        //                 rel='noreferrer'
-        //             >
-        //                 {result}
-        //             </a>
+        //             
         //         )}
         //     </div>
         // </div>

@@ -11,6 +11,15 @@ export const uploadFile = async (data) => {
     }
 };
 
+export const deleteFile = async (fileId) => {
+    try {
+        const res = await axios.get(`${API_URI}/delete`,{params: {fileId}});
+        return res.data;
+    } catch (error) {
+        console.log("Error while calling the delete API ", error.message);
+    }
+};
+
 export const loginUser = async (userData) => {
     try {
         const res = await axios.post(`${API_URI}/login`, userData);
