@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { uploadFile } from "../service/api";
-import { useAuth } from "../contexts/authContext";
+import { useAuth } from "../contexts/AuthContext";
 
 const Upload = (props) => {
     const [auth] = useAuth();

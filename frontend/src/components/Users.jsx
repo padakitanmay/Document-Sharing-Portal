@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import { Avatar, List } from "antd";
 import { getChats } from "../service/api";
 import { useState } from "react";
-import ChatBox from "./ChatBox";
-import { useAuth } from "../contexts/authContext";
+import Documents from "./Documents";
+import { useAuth } from "../contexts/AuthContext";
 
-const Chats = () => {
+const Users = () => {
     const [auth] = useAuth();
     const [isLoggedIn, setisLoggedIn] = useState(false);
     const [chatData, setChatData] = useState();
@@ -54,9 +54,9 @@ const Chats = () => {
                     <h1 className="text-3xl ml-96 text-center font-bold">Login First</h1>
                 )}
             </div>
-            <div className='p-10'>{comData && <ChatBox data={comData} />}</div>
+            <div className='p-10'>{comData && <Documents data={comData} />}</div>
         </div>
     );
 };
 
-export default Chats;
+export default Users;

@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import Upload from "./Upload";
-import { useAuth } from "../contexts/authContext";
+import { useAuth } from "../contexts/AuthContext";
 import { getDocs, deleteFile } from "../service/api";
 import { useState } from "react";
 
-const ChatBox = ({ data }) => {
+const Documents = ({ data }) => {
     const [docs, setDocs] = useState([]);
     const [auth] = useAuth();
     useEffect(() => {
@@ -63,4 +63,4 @@ const ChatBox = ({ data }) => {
     );
 };
 
-export default ChatBox;
+export default Documents;

@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./components/Header";
 import { Outlet } from "react-router-dom";
-import { AuthProvider } from "./contexts/authContext";
+import { AuthProvider } from "./contexts/AuthContext";
 
 const Layout = () => {
     return (

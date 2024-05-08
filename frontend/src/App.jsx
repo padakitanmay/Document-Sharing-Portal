@@ -1,10 +1,10 @@
 import React from "react";
-import Chats from "./components/Chats";
+import Users from "./components/Users";
 
 const App = () => {
     return (
         <div>
-            <Chats />
+            <Users />
         </div>
     );
 };
