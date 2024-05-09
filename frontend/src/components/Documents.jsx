@@ -35,7 +35,7 @@ const Documents = ({ data }) => {
                                     File:
                                     <a
                                         href={`${item.path}`}
-                                        className='block text-green-500 hover:text-green-700'
+                                        className='block text-green-500 hover:text-green-700 my-1'
                                         target='_blank'
                                         rel='noreferrer'
                                     >
@@ -44,6 +44,7 @@ const Documents = ({ data }) => {
                                     {item.sentBy == auth.user.username && (
                                         <button
                                             onClick={() => remove(item._id)}
+                                            className='bg-blue-500 hover:bg-blue-700 text-white font-bold text-xs py-2 px-4 rounded-xl'
                                         >
                                             Delete
                                         </button>
