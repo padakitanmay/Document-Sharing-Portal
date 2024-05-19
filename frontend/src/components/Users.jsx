@@ -19,9 +19,6 @@ const Users = () => {
         const data = JSON.parse(localStorage.getItem("auth"));
         if (data) setisLoggedIn(true);
     }, [setComData, setChatData]);
-
-    useEffect(() => {}, []);
-
     return (
         <div className='grid grid-cols-2'>
             <div className='p-10'>
@@ -51,10 +48,14 @@ const Users = () => {
                         }
                     />
                 ) : (
-                    <h1 className="text-3xl ml-96 text-center font-bold">Login First</h1>
+                    <h1 className='text-3xl ml-96 text-center font-bold'>
+                        Login First
+                    </h1>
                 )}
             </div>
-            <div className='p-10'>{comData && <Documents data={comData} />}</div>
+            <div className='p-10'>
+                {comData && <Documents data={comData} />}
+            </div>
         </div>
     );
 };

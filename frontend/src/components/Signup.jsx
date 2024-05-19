@@ -14,6 +14,7 @@ const Signup = () => {
             const userData = { email, password, username };
             const res = await signupUser(userData);
             console.log("Signup response:", res);
+            alert("Signup successful");
             navigate("/login");
         } catch (error) {
             setError("Invalid email or password");

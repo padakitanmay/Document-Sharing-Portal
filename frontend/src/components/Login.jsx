@@ -17,7 +17,7 @@ const Login = () => {
                     "auth",
                     JSON.stringify({ user: res.user, token: res.token })
                 );
-
+                alert("Login successful");
                 navigate("/");
             }
         } catch (error) {
@@ -54,14 +54,13 @@ const Login = () => {
                         className='border border-gray-300 rounded-md px-3 py-2 w-full'
                     />
                 </div>
-                <div className="flex justify-center">
-
-                <button
-                    type='submit'
-                    className='bg-blue-500 text-white px-4 w-1/3 py-2 rounded-md hover:bg-blue-600 '
-                >
-                    Login
-                </button>
+                <div className='flex justify-center'>
+                    <button
+                        type='submit'
+                        className='bg-blue-500 text-white px-4 w-1/3 py-2 rounded-md hover:bg-blue-600 '
+                    >
+                        Login
+                    </button>
                 </div>
             </form>
             <p className='mt-4'>
