@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { uploadFile } from "../service/api";
-import { useAuth } from "../contexts/AuthContext";
+import { useSelector } from "react-redux";
 
 const Upload = (props) => {
-    const [auth] = useAuth();
+    const auth = useSelector((state) => state.auth);
     const [file, setFile] = useState("");
     const fileInputRef = useRef();
 

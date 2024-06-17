@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import Upload from "./Upload";
-import { useAuth } from "../contexts/AuthContext";
 import { getDocs, deleteFile } from "../service/api";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Documents = ({ data }) => {
     const [docs, setDocs] = useState([]);
-    const [auth] = useAuth();
+    const auth = useSelector((state) => state.auth);
     useEffect(() => {
         const fetchData = async () => {
             if (data && auth != null) {

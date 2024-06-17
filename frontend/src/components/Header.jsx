@@ -1,14 +1,15 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
-import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { clearAuth } from "../store/authSlice";
 
 const Header = () => {
     const currenturl = useLocation();
     const navigate = useNavigate();
-    const [auth] = useAuth();
-    useEffect(() => {}, [auth]);
+    const dispatch = useDispatch();
+    const auth = useSelector((state) => state.auth);
     const logout = () => {
+        dispatch(clearAuth());
         localStorage.removeItem("auth");
         navigate("/login");
     };

@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../service/api";
+import { useDispatch } from "react-redux";
+import { setAuth } from "../store/authSlice";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -13,6 +16,7 @@ const Login = () => {
             const res = await loginUser(userData);
             console.log("Login response:", res);
             if (res.status == 200) {
+                dispatch(setAuth({ user: res.user, token: res.token }));
                 localStorage.setItem(
                     "auth",
                     JSON.stringify({ user: res.user, token: res.token })
@@ -21,6 +25,7 @@ const Login = () => {
                 navigate("/");
             }
         } catch (error) {
+            alert("Error logging in please check your credentials");
             setError("Invalid email or password");
             console.error("Login error:", error);
         }

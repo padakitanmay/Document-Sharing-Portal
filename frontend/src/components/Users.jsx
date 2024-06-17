@@ -3,10 +3,10 @@ import { Avatar, List } from "antd";
 import { getUsers } from "../service/api";
 import { useState } from "react";
 import Documents from "./Documents";
-import { useAuth } from "../contexts/AuthContext";
+import { useSelector } from "react-redux";
 
 const Users = () => {
-    const [auth] = useAuth();
+    const auth = useSelector((state) => state.auth);
     const [isLoggedIn, setisLoggedIn] = useState(false);
     const [chatData, setChatData] = useState();
     const [comData, setComData] = useState(null);
