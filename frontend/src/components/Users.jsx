@@ -2,27 +2,28 @@ import React, { useEffect } from "react";
 import { Avatar, List } from "antd";
 import { getUsers } from "../service/api";
 import { useState } from "react";
-import Documents from "./Documents";
+import Documents from "./Chats/Documents";
 import { useSelector } from "react-redux";
 
 const Users = () => {
     const auth = useSelector((state) => state.auth);
-    const [isLoggedIn, setisLoggedIn] = useState(false);
+
     const [chatData, setChatData] = useState();
     const [comData, setComData] = useState(null);
+
     const fetchData = async () => {
         const data = await getUsers();
         if (data) setChatData(data);
     };
+
     useEffect(() => {
         fetchData();
-        const data = JSON.parse(localStorage.getItem("auth"));
-        if (data) setisLoggedIn(true);
     }, [setComData, setChatData]);
+    
     return (
         <div className='grid grid-cols-2'>
             <div className='p-10'>
-                {isLoggedIn ? (
+                {auth?.user ? (
                     <List
                         itemLayout='horizontal'
                         dataSource={chatData}

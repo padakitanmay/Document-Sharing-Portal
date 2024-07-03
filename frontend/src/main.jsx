@@ -3,9 +3,9 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Login from "./components/Login.jsx";
+import Login from "./components/Auth/Login.jsx";
+import Signup from "./components/Auth/Signup.jsx";
 import Layout from "./Layout.jsx";
-import Signup from "./components/Signup.jsx";
 
 const router = createBrowserRouter([
     {

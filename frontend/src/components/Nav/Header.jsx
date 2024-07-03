@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { clearAuth } from "../store/authSlice";
+import { clearAuth } from "../../store/authSlice";
 
 const Header = () => {
     const currenturl = useLocation();
@@ -18,7 +18,7 @@ const Header = () => {
             <div className='container mx-auto flex justify-between items-center'>
                 <h1 className='text-lg font-bold'>
                     <Link to='/'>
-                        <div className='flex'>
+                        <div className='flex mx-2'>
                             <img src='docs.svg' alt='' className='size-10' />
                             <h1 className='mx-2 align-middle'>
                                 Document Sharing Portal

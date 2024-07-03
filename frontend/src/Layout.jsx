@@ -1,5 +1,5 @@
 import React,{useEffect} from "react";
-import Header from "./components/Header";
+import Header from "./components/Nav/Header";
 import { Outlet } from "react-router-dom";
 import { Provider, useDispatch } from 'react-redux';
 import { setAuth } from "./store/authSlice";

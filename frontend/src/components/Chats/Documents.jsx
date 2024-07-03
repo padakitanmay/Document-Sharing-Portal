@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import Upload from "./Upload";
-import { getDocs, deleteFile } from "../service/api";
+import Upload from "../Upload";
+import { getDocs, deleteFile } from "../../service/api";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -20,6 +20,7 @@ const Documents = ({ data }) => {
     const remove = (fileId) => {
         deleteFile(fileId);
     };
+    
     return (
         <div className='flex flex-col h-screen'>
             <div className='text-center font-bold p-5 bg-blue-200 rounded-lg'>
