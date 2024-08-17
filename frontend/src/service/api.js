@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URI = "http://localhost:5000";
+const API_URI = import.meta.env.VITE_APP_BASE_URL;
 
 // Uploads a file to the server
 export const uploadFile = async (data) => {
