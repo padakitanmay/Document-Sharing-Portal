@@ -10,17 +10,16 @@ const app = express();
 
 // CORS Configuration
 const corsOptions = {
-    origin: "*",
-    methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    optionsSuccessStatus: 200, // For legacy browsers
-    credentials: true // If your requests need to include credentials like cookies
+    origin: "*", // Allow requests from all origins
+    methods: "GET,PATCH,POST,DELETE", // Allow all HTTP methods
+    allowedHeaders: "Origin,X-Requested-With,Content-Type,Accept,Authorization", // Allow these headers
+    credentials: true, // Allow sending cookies across origins
 };
 
 app.use(cors(corsOptions));
 
 // Preflight request handling (OPTIONS)
-app.options("*", cors(corsOptions)); 
+app.options("*", cors(corsOptions));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
