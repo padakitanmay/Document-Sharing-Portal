@@ -8,7 +8,14 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+const corsOptions = {
+    origin: "https://document-sharing-portal.vercel.app",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    optionsSuccessStatus: 200, // Some legacy browsers (e.g., IE11) choke on 204
+};
+
+app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use("/", router);
