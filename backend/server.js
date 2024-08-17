@@ -10,7 +10,7 @@ const app = express();
 
 // CORS Configuration
 const corsOptions = {
-    origin: "https://document-sharing-portal.vercel.app",
+    origin: "*",
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     optionsSuccessStatus: 200, // For legacy browsers
