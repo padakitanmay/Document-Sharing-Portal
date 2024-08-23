@@ -18,11 +18,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// Preflight request handling (OPTIONS)
-app.options("*", cors(corsOptions));
-
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 // Routes
 app.use("/", router);
