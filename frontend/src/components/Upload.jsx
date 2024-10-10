@@ -15,6 +15,10 @@ const Upload = (props) => {
                 data.append("file", file);
                 data.append("receivedBy", props.data.username);
                 data.append("sentBy", auth.user.username);
+                if (file.size > 25600) {
+                    alert("File size exceeds 25MB");
+                    return;
+                }
                 const res = await uploadFile(data);
             }
         };
@@ -31,7 +35,7 @@ const Upload = (props) => {
                 className='bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded'
                 onClick={onUploadClick}
             >
-                New File
+                New File (upto 25 MB)
             </button>
             <input
                 type='file'
