@@ -15,7 +15,8 @@ const Upload = (props) => {
                 data.append("file", file);
                 data.append("receivedBy", props.data.username);
                 data.append("sentBy", auth.user.username);
-                if (file.size > 25600) {
+                console.log(file)
+                if (file.size > 26214400) {
                     alert("File size exceeds 25MB");
                     return;
                 }
