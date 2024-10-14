@@ -4,33 +4,74 @@ const FilePreviewer = ({ file }) => {
     const [filePreview, setFilePreview] = useState(null);
 
     useEffect(() => {
-        if (file && file.path) {
+        if (file) {
             if (file.type === "image") {
-                setFilePreview(file.path); // Directly use the file path for preview
-            } else {
-                alert("Unsupported file type");
-                setFilePreview(null); // Clear preview if unsupported
+                setFilePreview(file.path);
+            }
+            else if (file.type === "pdf") {
+                if (file instanceof Blob) {
+                    const previewUrl = URL.createObjectURL(file);
+                    setFilePreview(previewUrl);
+                    return () => URL.revokeObjectURL(previewUrl);
+                } else if (typeof file.path === "string") {
+                    setFilePreview(file.path);
+                } else if (typeof file.base64 === "string") {
+                    setFilePreview(`data:application/pdf;base64,${file.base64}`);
+                } else {
+                    console.error("Unsupported PDF format", file);
+                    setFilePreview(null);
+                }
+            }
+            else {
+                console.warn("Unsupported file type:", file.type);
+                setFilePreview(null);
             }
         } else {
-            setFilePreview(null); // Clear preview if no file or invalid file
+            setFilePreview(null);
         }
+        console.log("File:", file);
+        console.log("File Preview:", filePreview);
     }, [file]);
 
     const renderPreview = () => {
-        if (file.type === "image") {
-            // Render image preview
-            return <img src={filePreview} alt="Image Preview" style={{ maxWidth: "200px", height: "200px" }} />;
-        } else if (file.type === "pdf") {
-            // Render PDF preview in an iframe
-            return <iframe src={filePreview} title="PDF Preview" width="100%" height="600px" />;
+        if (!file || !filePreview) {
+            return <p>No file selected or unsupported type.</p>;
         }
-        return <p>No file selected or unsupported type.</p>;
+
+        switch (file.type) {
+            case "image":
+                return (
+                    <img 
+                        src={filePreview} 
+                        alt="Image Preview" 
+                        style={{ 
+                            maxWidth: "200px", 
+                            height: "150px", 
+                            objectFit: "fill",
+                            border: "5px solid #555", 
+                            alignContent:"flex-start"
+                        }} 
+                    />
+                );
+            case "pdf":
+                return (
+                    <iframe 
+                        src={filePreview} 
+                        title="PDF Preview" 
+                        width="100%" 
+                        height="600px"
+                        style={{ border: "none" }}
+                    />
+                );
+            default:
+                return <p>Unsupported file type: {file.type}</p>;
+        }
     };
 
     return (
         <div className="file-previewer">
             <div className="preview-container" style={{ marginTop: "20px" }}>
-                {filePreview ? renderPreview() : <p>Error in preview</p>}
+                {renderPreview()}
             </div>
         </div>
     );

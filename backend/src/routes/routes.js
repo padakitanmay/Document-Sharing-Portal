@@ -20,6 +20,19 @@ router.post("/getUsers",getUsers)
 router.post("/login",loginUser);
 //register user
 router.post("/register",registerUser);
+// app.get('/file/:id', (req, res) => {
+//     const filePath = path.join(__dirname, 'path/to/your/file.pdf'); // Change this to the actual file path
+    
+//     res.setHeader('Content-Type', 'application/pdf');
+//     res.setHeader('Content-Disposition', 'inline; filename="file.pdf"'); // Change filename if necessary
+    
+//     res.sendFile(filePath, (err) => {
+//         if (err) {
+//             console.error(err);
+//             res.status(err.status).end();
+//         }
+//     });
+// });
 
 
 export default router;

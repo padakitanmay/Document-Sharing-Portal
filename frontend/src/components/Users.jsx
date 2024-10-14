@@ -54,6 +54,7 @@ const Users = () => {
                     </h1>
                 )}
             </div>
+
             <div className='p-10'>
                 {comData && <Documents data={comData} />}
             </div>

@@ -48,7 +48,14 @@ const Documents = ({ data }) => {
                 {docs.files?.length > 0 ? (
                     <ul className='divide-y divide-gray-200'>
                         {docs.files.map((item) => (
-                            <li key={item._id} className='py-4'>
+                            <li
+                            key={item._id}
+                            className={`py-4 flex ${
+                              item.sentBy === auth?.user?.username
+                                ? 'text-blue-500 hover:text-blue-700 justify-end'
+                                : 'text-green-500 hover:text-green-700 justify-start'
+                            }`}
+                          >
                                 <p className='font-semibold'>
                                     <span>File:</span>
                                     <FilePreviewer
@@ -60,7 +67,7 @@ const Documents = ({ data }) => {
                                     />
                                     <a
                                         href={item.path}
-                                        className='block text-green-500 hover:text-green-700 my-1'
+                                        className='block text-grey-500 hover:text-grey-700 my-1'
                                         target='_blank'
                                         rel='noreferrer'
                                     >
