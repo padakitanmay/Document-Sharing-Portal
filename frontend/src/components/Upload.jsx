@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 const Upload = (props) => {
     const auth = useSelector((state) => state.auth);
-    const [file, setFile] = useState("");
+    const [file, setFile] = [props.file, props.setFile]
     const fileInputRef = useRef();
 
     useEffect(() => {

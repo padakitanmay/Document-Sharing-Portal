@@ -17,6 +17,7 @@ const getFileType = (fileName) => {
 
 const Documents = ({ data }) => {
     const [docs, setDocs] = useState([]);
+    const [file, setFile] = useState();
     const auth = useSelector((state) => state.auth);
 
     useEffect(() => {
@@ -27,7 +28,7 @@ const Documents = ({ data }) => {
             }
         };
         fetchData();
-    }, [auth, data]);
+    }, [auth, data, file]);
 
     const remove = async (fileId) => {
         await deleteFile(fileId);
@@ -49,13 +50,13 @@ const Documents = ({ data }) => {
                     <ul className='divide-y divide-gray-200'>
                         {docs.files.map((item) => (
                             <li
-                            key={item._id}
-                            className={`py-4 flex ${
-                              item.sentBy === auth?.user?.username
-                                ? 'text-blue-500 hover:text-blue-700 justify-end'
-                                : 'text-green-500 hover:text-green-700 justify-start'
-                            }`}
-                          >
+                                key={item._id}
+                                className={`py-4 flex ${
+                                    item.sentBy === auth?.user?.username
+                                        ? "text-blue-500 hover:text-blue-700 justify-end"
+                                        : "text-green-500 hover:text-green-700 justify-start"
+                                }`}
+                            >
                                 <p className='font-semibold'>
                                     <span>File:</span>
                                     <FilePreviewer
@@ -92,7 +93,7 @@ const Documents = ({ data }) => {
             </div>
 
             <div className='p-3 flex justify-center bg-blue-200 rounded-lg'>
-                <Upload data={data} />
+                <Upload data={data} file={file} setFile={setFile} />
             </div>
         </div>
     );
